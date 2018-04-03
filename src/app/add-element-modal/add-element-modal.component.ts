@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Sticky} from '../sticky';
 import {HttpStickyService} from '../http-sticky.service';
+import {log} from 'util';
 
 @Component({
   selector: 'app-add-element-modal',
@@ -11,13 +12,23 @@ import {HttpStickyService} from '../http-sticky.service';
 export class AddElementModalComponent implements OnInit {
 
   closeResult: string;
-  model = new Sticky(this.guid(), '', '', 'git', 0);
+  model: Sticky;
+  @Output() added: EventEmitter<any> = new EventEmitter();
 
 
   constructor(private modalService: NgbModal, private httpStickyService: HttpStickyService) {}
 
   submitValues(): void {
-    this.httpStickyService.addSticky(this.model);
+    this.httpStickyService.addSticky(this.model).subscribe(
+      () => {
+        this.added.emit(null);
+        },
+      error => {
+        log(error);
+        this.added.emit(null);
+      }
+    );
+    this.genNewSticky();
   }
 
   open(content) {
@@ -38,8 +49,12 @@ export class AddElementModalComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.genNewSticky();
   }
 
+  private genNewSticky() {
+    this.model = new Sticky(this.guid(), '', '', 'git', 0);
+  }
   private guid() {
     return this._p8(false) + this._p8(true) + this._p8(true) + this._p8(false);
   }

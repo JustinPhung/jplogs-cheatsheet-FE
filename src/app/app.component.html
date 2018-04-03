@@ -4,7 +4,7 @@
     <div class="navbar navbar-dark bg-dark box-shadow">
       <div class="container d-flex justify-content-between">
         <h4 class="text-white"><i class="far fa-sticky-note"></i> jplogs</h4>
-        <app-add-element-modal></app-add-element-modal>
+        <app-add-element-modal (added)="loadStickies()"></app-add-element-modal>
       </div>
     </div>
     <ng-template #popContent><textarea></textarea></ng-template>
@@ -16,21 +16,27 @@
       <form (submit)="search()">
         <input class="form-control" #searchControl (keyup.enter)="search(searchControl.value)" placeholder="Stichwort">
       </form>
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngFor="let category of categories">
+          <a class="nav-link active" (click)="filterByCategory(category)">{{category}}</a>
+        </li>
+      </ul>
     </div>
   </section>
 
   <div class="album bg-light">
     <div class="container">
       <div class="row">
-        <div class="col-md-4 jp-bottom-margin">
+        <div *ngFor="let sticky of displayStickies" class="col-md-4 jp-bottom-margin">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
+              <h5 class="card-title">{{sticky.name}}
+                <button (click)="deleteSticky(sticky)" class="jp-icon btn" type="button">
+                   <i class="far fa-trash-alt"></i>
+                </button></h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{sticky.category}}</h6>
+              <p class="card-text">{{sticky.copyText}}</p>
+              <!-- <a href="#" class="card-link">source</a> -->
             </div>
           </div>
         </div>
