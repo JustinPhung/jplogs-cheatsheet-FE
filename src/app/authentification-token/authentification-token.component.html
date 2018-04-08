@@ -1,0 +1,11 @@
+<ng-template #popContent>
+  <form (submit)="submitKey()">
+    <input type="password" class="form-control" #key (keyup.enter)="submitKey(key.value); popContent.close()" placeholder="Schlüssel">
+  </form>
+</ng-template>
+<button *ngIf="!hasToken" type="button" class="btn btn-md jp-red" [ngbPopover]="popContent" placement="bottom">
+  <i class="fas fa-lock"></i>
+</button>
+<button *ngIf="hasToken" type="button" class="btn btn-md jp-green" [ngbPopover]="popContent" placement="bottom">
+  <i class="fas fa-unlock-alt"></i>
+</button>

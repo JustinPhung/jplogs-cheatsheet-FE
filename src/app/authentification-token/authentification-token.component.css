@@ -1,0 +1,29 @@
+.jp-red {
+  color : darkred;
+  background: transparent;
+  border-color: darkred;
+}
+.jp-red:hover, .jp-red:active {
+  color : darkred;
+  border-color: darkred;
+  background: red;
+}
+
+.jp-red:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 3, 0, 0.1);
+}
+
+.jp-green {
+  color : lightgreen;
+  background: transparent;
+  border-color: lightgreen;
+}
+.jp-green:hover, .jp-green:active {
+  color : lightgreen;
+  border-color: lightgreen;
+  background: green;
+}
+
+.jp-green:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 153, 0.1);
+}
