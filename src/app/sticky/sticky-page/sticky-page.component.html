@@ -1,0 +1,35 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Spicker
+      <app-add-element-modal (added)="loadStickies()"></app-add-element-modal>
+    </h1>
+    <form class="jp-bottom-margin-small" (submit)="search()">
+      <input class="form-control" #searchControl (keyup.enter)="search(searchControl.value)" placeholder="Stichwort">
+    </form>
+    <ul class="nav nav-pills">
+      <li class="nav-item" *ngFor="let category of categories">
+        <a class="nav-link active" (click)="filterByCategory(category)">{{category}}</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div class="album bg-light">
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let sticky of displayStickies" class="col-md-4 jp-bottom-margin">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{sticky.name}}
+              <button (click)="deleteSticky(sticky)" class="jp-icon btn" type="button">
+                <i class="far fa-trash-alt"></i>
+              </button></h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{sticky.category}}</h6>
+            <p class="card-text">{{sticky.copyText}}</p>
+            <!-- <a href="#" class="card-link">source</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

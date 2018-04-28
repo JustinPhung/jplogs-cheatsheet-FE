@@ -1,0 +1,51 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Neuer Spicker</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="submitValues()" #addElementForm="ngForm">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #name="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+    </form>
+    <div class="form-group">
+      <label for="copyText">Copy Code</label>
+      <textarea class="form-control" id="copyText"
+                [(ngModel)]="model.copyText" name="alterEgo">
+      </textarea>
+    </div>
+    <div class="form-group">
+      <label for="sel1">Select list:</label>
+      <select [(ngModel)]="model.category" class="form-control" id="sel1">
+        <option>java</option>
+        <option>javascript</option>
+        <option>vue</option>
+        <option>angular</option>
+        <option>git</option>
+        <option>bootstrap</option>
+        <option>css</option>
+        <option>python</option>
+        <option>bash</option>
+      </select>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Abbrechen</button>
+    <button type="button" class="btn btn-outline-dark" (click)="submitValues(); c('Close click')">Hinzufügen</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-md btn-outline-primary" (click)="open(content)">
+  <i class="fas fa-plus"></i>
+</button>

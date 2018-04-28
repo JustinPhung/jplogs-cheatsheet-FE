@@ -1,0 +1,22 @@
+.jp-bottom-margin{
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.jp-icon{
+  font-size: .8em;
+  float: right;
+  background: white;
+}
+
+.jp-hide{
+  display:none;
+}
+
+.jp-show{
+  display: block;
+}
+
+.jp-bottom-margin-small{
+  margin-bottom: 0.1em;
+}

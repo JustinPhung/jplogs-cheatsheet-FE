@@ -7,7 +7,7 @@ import {Md5} from 'ts-md5/dist/md5';
 @Injectable()
 export class HttpStickyService {
   constructor(private http: HttpClient) { }
-  configUrl = 'http://localhost:8080/stickies/';
+  configUrl = 'http://jplogs.com:8080/stickies/';
 
   public getStickys() {
      return this.http.get(this.configUrl + 'getStickies');

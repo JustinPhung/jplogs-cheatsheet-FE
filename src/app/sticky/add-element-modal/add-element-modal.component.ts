@@ -3,6 +3,7 @@ import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Sticky} from '../sticky';
 import {HttpStickyService} from '../http-sticky.service';
 import {log} from 'util';
+import {UtilsService} from '../../utils.service';
 
 @Component({
   selector: 'app-add-element-modal',
@@ -16,7 +17,9 @@ export class AddElementModalComponent implements OnInit {
   @Output() added: EventEmitter<any> = new EventEmitter();
 
 
-  constructor(private modalService: NgbModal, private httpStickyService: HttpStickyService) {}
+  constructor(private modalService: NgbModal,
+              private httpStickyService: HttpStickyService,
+              private util: UtilsService) {}
 
   submitValues(): void {
     this.httpStickyService.addSticky(this.model).subscribe(
@@ -53,14 +56,6 @@ export class AddElementModalComponent implements OnInit {
   }
 
   private genNewSticky() {
-    this.model = new Sticky(this.guid(), '', '', 'git', 0);
-  }
-  private guid() {
-    return this._p8(false) + this._p8(true) + this._p8(true) + this._p8(false);
-  }
-
-  private _p8(s): string {
-    const p = (Math.random().toString(16) + '000000000').substr(2, 8);
-    return s ? '-' + p.substr(0, 4) + '-' + p.substr(4, 4) : p ;
+    this.model = new Sticky(this.util.guid(), '', '', 'git', 0);
   }
 }

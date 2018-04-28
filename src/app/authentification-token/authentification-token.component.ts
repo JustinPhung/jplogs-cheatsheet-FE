@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {HttpStickyService} from '../http-sticky.service';
+import {HttpStickyService} from '../sticky/http-sticky.service';
 
 @Component({
   selector: 'app-authentification-token',
