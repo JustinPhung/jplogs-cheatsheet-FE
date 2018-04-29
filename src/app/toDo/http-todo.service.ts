@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
 export class HttpTodoService {
 
   constructor(private http: HttpClient) { }
-  configUrl = 'http://jplogs.com:8080/stickies/';
+  configUrl = 'http://localhost:8080/todos/';
 
   public getToDos() {
     return this.http.get(this.configUrl + 'getToDos');
