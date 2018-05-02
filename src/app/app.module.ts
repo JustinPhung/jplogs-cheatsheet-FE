@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import { AddElementModalComponent } from './sticky/add-element-modal/add-element-modal.component';
@@ -17,6 +17,7 @@ import { StickyPageComponent } from './sticky/sticky-page/sticky-page.component'
 import { AddTodoModalComponent } from './toDo/add-todo-modal/add-todo-modal.component';
 import {HttpTodoService} from './toDo/http-todo.service';
 import {UtilsService} from './utils.service';
+import {HttpDiaryService} from './diary/http-diary.service';
 
 const appRoutes: Routes = [
   { path: 'todo', component: TodoPageComponent },
@@ -37,6 +38,8 @@ const appRoutes: Routes = [
     AddTodoModalComponent,
   ],
   imports: [
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     FormsModule,
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
     NgbModule.forRoot()
   ],
   providers: [HttpStickyService,
+    HttpDiaryService,
     HttpTodoService,
     UtilsService,
     {

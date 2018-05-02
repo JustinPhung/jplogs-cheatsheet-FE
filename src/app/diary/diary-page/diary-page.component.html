@@ -1,3 +1,43 @@
-<p>
-  diary-page works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <h5>
+        <br>
+        Datum:
+      </h5>
+      <form class="form-inline">
+        <div class="form-group">
+          <div class="input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd"
+                   name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <i class="fas fa-calendar-alt"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-9">
+      <form (ngSubmit)="onSubmit()">
+        <textarea [froalaEditor] [(froalaModel)]="editorContent"></textarea>
+        <button class="jp-right btn" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div *ngFor="let diary of diaryEntries">
+    <hr>
+
+    <div class="row" >
+      <div class="col-sm-3">
+        <h6>{{diary.time}}</h6>
+      </div>
+      <div class="col-sm-9">
+        <div [innerHTML]="diary.diaryEntry"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
